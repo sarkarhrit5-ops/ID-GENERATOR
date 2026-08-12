@@ -349,6 +349,19 @@ a {
   background: rgba(255, 107, 95, 0.08);
 }
 
+.credential-actions__status {
+  margin: 0;
+  color: var(--color-hh-green);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px dashed rgba(202, 255, 47, 0.38);
+  border-radius: var(--radius-sm);
+  background: rgba(202, 255, 47, 0.06);
+}
+
 .button--ghost {
   background: transparent;
   border-color: var(--color-border);

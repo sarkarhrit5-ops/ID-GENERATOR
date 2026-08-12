@@ -25,6 +25,7 @@ export function CredentialActions({
 }: CredentialActionsProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [statusMessage, setStatusMessage] = useState<string>();
   const [supportsNativeShare] = useState(() => canNativeShareFile());
 
   async function handleDownload() {
@@ -39,10 +40,12 @@ export function CredentialActions({
     try {
       setIsExporting(true);
       setErrorMessage(undefined);
+      setStatusMessage(undefined);
 
       const blob = await renderCredentialToBlob(element);
       const filename = sanitizeFilename(name);
       downloadBlob(blob, filename);
+      setStatusMessage("Credential downloaded. Ready to post.");
     } catch (error) {
       console.error("[Credential Export Error]:", error);
       setErrorMessage("Couldn't export the credential. Please try again.");
@@ -60,27 +63,52 @@ export function CredentialActions({
     try {
       setIsExporting(true);
       setErrorMessage(undefined);
+      setStatusMessage(undefined);
 
       const blob = await renderCredentialToBlob(element);
       const filename = sanitizeFilename(name);
       const shared = await shareCredentialNative(blob, filename, builderTitle);
 
       if (!shared) {
-        // Fallback to X Intent if native share was cancelled or unavailable
-        openXShareIntent(builderTitle);
+        setStatusMessage("Share cancelled. You can download the credential or post it to X instead.");
+      } else {
+        setStatusMessage("Credential shared with image attached.");
       }
     } catch (error) {
       console.error("[Credential Share Error]:", error);
-      // Fallback cleanly to X Intent on error
-      openXShareIntent(builderTitle);
+      setErrorMessage("Couldn't open the device share sheet. Please try again.");
     } finally {
       setIsExporting(false);
     }
   }
 
-  function handleXShare() {
-    if (!isReady) return;
-    openXShareIntent(builderTitle);
+  async function handleXShare() {
+    if (!isReady || isExporting) return;
+
+    const element = getCredentialElement();
+    if (!element) return;
+
+    try {
+      setIsExporting(true);
+      setErrorMessage(undefined);
+      setStatusMessage(undefined);
+
+      // X's web compose URL cannot attach a local file. Download the generated
+      // image first, then open a composer with the required caption so desktop
+      // users can attach that exact file immediately. Mobile users can use the
+      // native share button below to attach the file directly.
+      const blob = await renderCredentialToBlob(element);
+      downloadBlob(blob, sanitizeFilename(name));
+      openXShareIntent(builderTitle);
+      setStatusMessage(
+        "Your image downloaded and X opened with #FrameInGoa. Attach the image, then post."
+      );
+    } catch (error) {
+      console.error("[Credential X Share Error]:", error);
+      setErrorMessage("Couldn't prepare the image for X. Please try again.");
+    } finally {
+      setIsExporting(false);
+    }
   }
 
   if (!isReady) {
@@ -105,7 +133,7 @@ export function CredentialActions({
           onClick={handleXShare}
           type="button"
         >
-          SHARE TO X
+          {isExporting ? "PREPARING X POST..." : "POST TO X"}
         </button>
 
         {supportsNativeShare ? (
@@ -123,6 +151,12 @@ export function CredentialActions({
       {errorMessage ? (
         <p className="credential-actions__error" role="alert">
           {errorMessage}
+        </p>
+      ) : null}
+
+      {statusMessage ? (
+        <p className="credential-actions__status" role="status">
+          {statusMessage}
         </p>
       ) : null}
     </div>
