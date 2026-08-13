@@ -46,6 +46,23 @@ export function CredentialPreview({
             <div className="credential-frame" ref={cardRef}>
               <article className="credential">
                 <CredentialGoaCardArt />
+                <div className="credential__decorations" aria-hidden="true">
+                  <img
+                    className="credential__decorations-surfboard"
+                    src="/decorations/surfboards.png"
+                    alt=""
+                  />
+                  <img
+                    className="credential__decorations-surfboard credential__decorations-surfboard--second"
+                    src="/decorations/surfboards.png"
+                    alt=""
+                  />
+                  <img
+                    className="credential__decorations-seats"
+                    src="/decorations/seats.png"
+                    alt=""
+                  />
+                </div>
                 <div className="credential__grain" aria-hidden="true" />
                 <div className="credential__coordinates" aria-hidden="true">GOA · INDIA · 2026</div>
                 <CredentialHeader signalId={meta.signalId} />

@@ -1301,6 +1301,46 @@ a {
   object-fit: cover;
 }
 
+.credential__decorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.credential__decorations-surfboard {
+  position: absolute;
+  left: 4%;
+  bottom: 3%;
+  width: 164px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.12;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
+.credential__decorations-surfboard--second {
+  left: 17%;
+  bottom: 5%;
+  width: 150px;
+  opacity: 0.12;
+  transform: rotate(-3deg);
+}
+
+.credential__decorations-seats {
+  position: absolute;
+  right: 6%;
+  bottom: 3%;
+  width: 170px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.12;
+  pointer-events: none;
+  transform: rotate(1deg);
+}
+
 .credential__grain {
   position: absolute;
   inset: 0;
@@ -1405,6 +1445,15 @@ a {
   transform-origin: top center;
 }
 
+.credential-photo__portrait-shell {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
 .credential-photo__meta {
   display: flex;
   align-items: center;
@@ -1421,6 +1470,30 @@ a {
 }
 
 /* Stylish photo window frame on ID */
+.credential-photo__hype-wrap {
+  position: absolute;
+  top: 50%;
+  right: calc(100% - 46px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 195px;
+  overflow: visible;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.credential-photo__hype {
+  display: block;
+  width: 140px;
+  height: 195px;
+  object-fit: contain;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
 .credential-photo__frame {
   position: relative;
   min-height: 0;

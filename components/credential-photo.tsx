@@ -15,15 +15,19 @@ export function CredentialPhoto({
         <span>BUILDER PORTRAIT</span>
         <span>ID · {builderId}</span>
       </div>
-      <div className="credential-photo__frame">
-        <span className="credential-photo__scanline" aria-hidden="true" />
-        <svg
-          className="credential-photo__wave-art"
-          viewBox="0 0 120 70"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+      <div className="credential-photo__portrait-shell">
+        <div className="credential-photo__hype-wrap" aria-hidden="true">
+          <img className="credential-photo__hype" alt="" src="/decorations/hype.png" />
+        </div>
+        <div className="credential-photo__frame">
+          <span className="credential-photo__scanline" aria-hidden="true" />
+          <svg
+            className="credential-photo__wave-art"
+            viewBox="0 0 120 70"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
           <circle cx="120" cy="70" r="45" fill="url(#sunGlow)" opacity="0.4" />
           <circle cx="120" cy="70" r="30" fill="url(#sunInner)" opacity="0.6" />
 
@@ -73,8 +77,9 @@ export function CredentialPhoto({
             </linearGradient>
           </defs>
         </svg>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img alt={`${name} credential photo`} src={photoUrl} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img alt={`${name} credential photo`} src={photoUrl} />
+        </div>
       </div>
     </section>
   );
