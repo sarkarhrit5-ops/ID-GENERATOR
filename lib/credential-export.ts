@@ -32,15 +32,16 @@ export async function renderCredentialToBlob(node: HTMLElement): Promise<Blob> {
     await document.fonts.ready;
   }
 
+  const width = node.offsetWidth || 540;
+  const height = node.offsetHeight || 675;
+
   // Generate 1080x1350 PNG blob using html-to-image
   const blob = await toBlob(node, {
-    width: 540,
-    height: 675,
+    width: width,
+    height: height,
     canvasWidth: CREDENTIAL_EXPORT_SPEC.width,
     canvasHeight: CREDENTIAL_EXPORT_SPEC.height,
     style: {
-      width: "540px",
-      height: "675px",
       transform: "none",
       transition: "none",
       animation: "none",
