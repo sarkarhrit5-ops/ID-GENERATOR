@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   canNativeShareFile,
+  copyBlobToClipboard,
   downloadBlob,
   openXShareIntent,
   renderCredentialToBlob,
@@ -93,16 +94,37 @@ export function CredentialActions({
       setErrorMessage(undefined);
       setStatusMessage(undefined);
 
-      // X's web compose URL cannot attach a local file. Download the generated
-      // image first, then open a composer with the required caption so desktop
-      // users can attach that exact file immediately. Mobile users can use the
-      // native share button below to attach the file directly.
-      const blob = await renderCredentialToBlob(element);
+      const blobPromise = renderCredentialToBlob(element);
+
+      if (supportsNativeShare) {
+        const blob = await blobPromise;
+        const filename = sanitizeFilename(name);
+        const shared = await shareCredentialNative(blob, filename, builderTitle);
+        if (shared) {
+          setStatusMessage("Credential shared natively.");
+        } else {
+          setStatusMessage("Share cancelled.");
+        }
+        return;
+      }
+
+      const copiedPromise = copyBlobToClipboard(blobPromise);
+
+      const blob = await blobPromise;
       downloadBlob(blob, sanitizeFilename(name));
+
+      const copied = await copiedPromise;
       openXShareIntent(builderTitle);
-      setStatusMessage(
-        "Your image downloaded and X opened with #FrameInGoa. Attach the image, then post."
-      );
+
+      if (copied) {
+        setStatusMessage(
+          "Image downloaded & copied to clipboard! X opened—simply paste (Ctrl+V / Cmd+V) to attach your ID card!"
+        );
+      } else {
+        setStatusMessage(
+          "Image downloaded and X opened. Attach the downloaded image to your post."
+        );
+      }
     } catch (error) {
       console.error("[Credential X Share Error]:", error);
       setErrorMessage("Couldn't prepare the image for X. Please try again.");

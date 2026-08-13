@@ -59,6 +59,27 @@ export async function renderCredentialToBlob(node: HTMLElement): Promise<Blob> {
   return blob;
 }
 
+export async function copyBlobToClipboard(blobOrPromise: Blob | Promise<Blob>): Promise<boolean> {
+  if (
+    typeof navigator === "undefined" ||
+    !navigator.clipboard ||
+    typeof window === "undefined" ||
+    !window.ClipboardItem
+  ) {
+    return false;
+  }
+  try {
+    const item = new ClipboardItem({
+      "image/png": blobOrPromise
+    });
+    await navigator.clipboard.write([item]);
+    return true;
+  } catch (error) {
+    console.error("[Clipboard Copy Error]:", error);
+    return false;
+  }
+}
+
 export function downloadBlob(blob: Blob, filename: string): void {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
