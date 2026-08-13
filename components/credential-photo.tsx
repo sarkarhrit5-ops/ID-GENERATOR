@@ -26,7 +26,7 @@ export function CredentialPhoto({
         >
           <circle cx="120" cy="70" r="45" fill="url(#sunGlow)" opacity="0.4" />
           <circle cx="120" cy="70" r="30" fill="url(#sunInner)" opacity="0.6" />
-          
+
           <path
             d="M0 58C30 52 50 64 80 56C95 52 110 46 120 42V70H0V58Z"
             fill="url(#wavePink)"
@@ -37,7 +37,7 @@ export function CredentialPhoto({
             fill="url(#waveGold)"
             opacity="0.8"
           />
-          
+
           <path
             d="M120 35C114 38 106 38 100 37C101 39 103 42 105 45C108 41 114 39 120 35Z"
             fill="var(--color-pink)"
