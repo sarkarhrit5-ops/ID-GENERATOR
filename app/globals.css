@@ -91,6 +91,81 @@ body::after {
     radial-gradient(ellipse 20rem 10rem at 102% 70%, transparent 53%, rgba(255, 105, 180, 0.12) 54% 55%, transparent 56%);
 }
 
+/* Translucent Goa Background Scene on the Web Page */
+.goa-page-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.goa-page-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+}
+
+.goa-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+}
+
+.goa-ambient-glow--top-left {
+  top: -8vw;
+  left: -8vw;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(255, 222, 0, 0.18) 0%, rgba(255, 105, 180, 0.08) 50%, transparent 75%);
+  animation: goaAmbientPulse 10s infinite alternate ease-in-out;
+}
+
+.goa-ambient-glow--center {
+  top: 25%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(32, 178, 170, 0.12) 0%, rgba(255, 222, 0, 0.06) 45%, transparent 70%);
+  animation: goaAmbientPulse 14s infinite alternate ease-in-out;
+}
+
+.goa-ambient-glow--bottom-right {
+  bottom: -8vw;
+  right: -8vw;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.16) 0%, rgba(32, 178, 170, 0.12) 50%, transparent 75%);
+  animation: goaAmbientPulse 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes goaAmbientPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+.goa-palm {
+  transform-origin: bottom center;
+  animation: goaPalmSway 14s ease-in-out infinite alternate;
+}
+
+.goa-palm--right {
+  animation-duration: 16s;
+  animation-delay: -5s;
+}
+
+@keyframes goaPalmSway {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(1.2deg); }
+  100% { transform: rotate(-0.8deg); }
+}
+
 button,
 input {
   font: inherit;
@@ -545,8 +620,15 @@ a {
 }
 
 @keyframes fadeInStatus {
-  from { opacity: 0; transform: translateY(2px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .field input {
@@ -575,7 +657,7 @@ a {
 
 .field input:focus {
   border-color: var(--color-pink-soft);
-  box-shadow: 
+  box-shadow:
     0 0 0 3px rgba(255, 105, 180, 0.15),
     0 0 15px rgba(255, 105, 180, 0.1),
     inset 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -1104,6 +1186,7 @@ a {
     transform: scale(0.9) rotate(0deg);
     opacity: 0.25;
   }
+
   100% {
     transform: scale(1.1) rotate(180deg);
     opacity: 0.4;

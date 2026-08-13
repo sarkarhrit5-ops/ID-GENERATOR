@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoaPageBackground } from "@/components/goa-page-background";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <GoaPageBackground />
+        {children}
+      </body>
     </html>
   );
 }
