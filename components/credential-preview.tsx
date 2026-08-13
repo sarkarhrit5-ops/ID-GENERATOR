@@ -40,23 +40,26 @@ export function CredentialPreview({
 
       {isReady && input.photo ? (
         <>
-          <div className="credential-frame" ref={cardRef}>
-            <article className="credential">
-              <div className="credential__grain" aria-hidden="true" />
-              <div className="credential__coordinates" aria-hidden="true">GOA · INDIA · 2026</div>
-              <CredentialHeader signalId={meta.signalId} />
-              <CredentialPhoto
-                builderId={meta.builderId}
-                name={displayName}
-                photoUrl={input.photo.url}
-              />
-              <CredentialIdentity
-                builderTitle={builderTitle}
-                name={displayName}
-                stack={displayStack}
-              />
-              <CredentialFooter stack={input.stack} />
-            </article>
+          <div className="credential-wrapper">
+            <div className="credential-glow" aria-hidden="true" />
+            <div className="credential-frame" ref={cardRef}>
+              <article className="credential">
+                <div className="credential__grain" aria-hidden="true" />
+                <div className="credential__coordinates" aria-hidden="true">GOA · INDIA · 2026</div>
+                <CredentialHeader signalId={meta.signalId} />
+                <CredentialPhoto
+                  builderId={meta.builderId}
+                  name={displayName}
+                  photoUrl={input.photo.url}
+                />
+                <CredentialIdentity
+                  builderTitle={builderTitle}
+                  name={displayName}
+                  stack={displayStack}
+                />
+                <CredentialFooter stack={input.stack} />
+              </article>
+            </div>
           </div>
 
           <CredentialActions
@@ -72,4 +75,3 @@ export function CredentialPreview({
     </section>
   );
 }
-

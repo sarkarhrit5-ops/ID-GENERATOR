@@ -56,7 +56,12 @@ export function BuilderCredentialForm({
         />
 
         <div className="field">
-          <label htmlFor="builder-name">Name</label>
+          <div className="field__label-row">
+            <label htmlFor="builder-name">Name</label>
+            {input.name.trim() && (
+              <span className="field__status-icon" aria-hidden="true">✓ Ready</span>
+            )}
+          </div>
           <input
             autoComplete="name"
             aria-describedby={validation.name ? "builder-name-error" : undefined}
@@ -76,7 +81,12 @@ export function BuilderCredentialForm({
         </div>
 
         <div className="field">
-          <label htmlFor="builder-stack">Stack / Role</label>
+          <div className="field__label-row">
+            <label htmlFor="builder-stack">Stack / Role</label>
+            {input.stack.trim() && (
+              <span className="field__status-icon" aria-hidden="true">✓ Ready</span>
+            )}
+          </div>
           <input
             aria-describedby={validation.stack ? "builder-stack-error" : undefined}
             aria-invalid={Boolean(validation.stack)}
@@ -93,6 +103,20 @@ export function BuilderCredentialForm({
               <option key={role} value={role} />
             ))}
           </datalist>
+
+          <div className="role-chips" aria-label="Suggested roles">
+            {ROLE_SUGGESTIONS.map((role) => (
+              <button
+                key={role}
+                type="button"
+                className={`role-chip${input.stack.trim().toLowerCase() === role.trim().toLowerCase() ? " role-chip--active" : ""}`}
+                onClick={() => updateField("stack", role)}
+              >
+                {role}
+              </button>
+            ))}
+          </div>
+
           {validation.stack ? (
             <p className="field-error" id="builder-stack-error">
               {validation.stack}
