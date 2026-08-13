@@ -873,7 +873,7 @@ a { color: inherit; }
 .credential__status { display: none; }
 .status-dot { display: none; }
 
-.credential-photo { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: .65rem; min-height: 0; }
+.credential-photo { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: .65rem; min-height: 0; transform: scale(0.9); transform-origin: top center; }
 .credential-photo__meta { display: flex; align-items: center; justify-content: space-between; gap: .5rem; color: #fff; font-size: .52rem; letter-spacing: .1em; font-weight: 800; }
 .credential-photo__meta span:last-child { color: var(--color-gold); }
 
