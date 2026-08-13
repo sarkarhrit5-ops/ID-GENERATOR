@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { CredentialActions } from "@/components/credential-actions";
 import { CredentialFooter } from "@/components/credential-footer";
+import { CredentialGoaCardArt } from "@/components/credential-goa-card-art";
 import { CredentialHeader } from "@/components/credential-header";
 import { CredentialIdentity } from "@/components/credential-identity";
 import { CredentialPhoto } from "@/components/credential-photo";
@@ -44,6 +45,7 @@ export function CredentialPreview({
             <div className="credential-glow" aria-hidden="true" />
             <div className="credential-frame" ref={cardRef}>
               <article className="credential">
+                <CredentialGoaCardArt />
                 <div className="credential__grain" aria-hidden="true" />
                 <div className="credential__coordinates" aria-hidden="true">GOA · INDIA · 2026</div>
                 <CredentialHeader signalId={meta.signalId} />
