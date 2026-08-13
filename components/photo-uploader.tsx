@@ -22,7 +22,9 @@ const MAX_IMAGE_SIZE_BYTES = 8 * 1024 * 1024;
 
 export function PhotoUploader({ error, photo, onChange }: PhotoUploaderProps) {
   const inputId = useId();
+  const cameraId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+  const cameraRef = useRef<HTMLInputElement>(null);
   const [localError, setLocalError] = useState<string>();
   const [isDragging, setIsDragging] = useState(false);
 
@@ -84,6 +86,9 @@ export function PhotoUploader({ error, photo, onChange }: PhotoUploaderProps) {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
+    if (cameraRef.current) {
+      cameraRef.current.value = "";
+    }
   }
 
   return (
@@ -108,8 +113,9 @@ export function PhotoUploader({ error, photo, onChange }: PhotoUploaderProps) {
           </div>
         ) : (
           <div className="photo-dropzone__empty">
-            <span>Drop image here</span>
-            <small>JPG, PNG, or HEIC up to 8MB</small>
+            <span>Drop your photo here</span>
+            <small>or choose from your device</small>
+            <small>JPG · PNG · HEIC · up to 8MB</small>
           </div>
         )}
 
@@ -123,8 +129,21 @@ export function PhotoUploader({ error, photo, onChange }: PhotoUploaderProps) {
             ref={inputRef}
             type="file"
           />
+          <input
+            accept="image/*"
+            capture
+            className="photo-dropzone__input"
+            id={cameraId}
+            name="builder-photo-camera"
+            onChange={handleInputChange}
+            ref={cameraRef}
+            type="file"
+          />
           <label className="button button--primary" htmlFor={inputId}>
-            {photo ? "CHANGE PHOTO" : "UPLOAD PHOTO"}
+            {photo ? "CHANGE PHOTO" : "CHOOSE PHOTO"}
+          </label>
+          <label className="button button--primary" htmlFor={cameraId} title="Take a photo with your camera">
+            📷 CAMERA
           </label>
           {photo ? (
             <button className="button button--ghost" onClick={clearPhoto} type="button">

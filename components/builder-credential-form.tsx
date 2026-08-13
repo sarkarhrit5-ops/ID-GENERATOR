@@ -42,9 +42,9 @@ export function BuilderCredentialForm({
   }
 
   return (
-    <section className="panel form-panel" aria-label="Builder details">
+    <section className="panel form-panel" id="builder-details" aria-label="Builder details">
       <div className="panel__header">
-        <span className="meta-label">Input Signal</span>
+        <span className="meta-label">Your HH Goa profile</span>
         <h2>Builder Details</h2>
       </div>
 

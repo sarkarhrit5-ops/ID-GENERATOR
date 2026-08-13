@@ -30,11 +30,11 @@ export function CredentialPreview({
   const meta = createCredentialMeta(input.name, input.stack);
 
   return (
-    <section className="panel preview-panel" aria-label="Credential preview">
+    <section className="panel preview-panel" id="credential-preview" aria-label="Credential preview">
       <div className="preview-panel__header">
-        <span className="meta-label">Live Preview</span>
+        <span className="meta-label">Your digital credential</span>
         <span className={isReady ? "ready-pill" : "ready-pill ready-pill--pending"}>
-          {isReady ? "SIGNAL LIVE" : "SIGNAL PENDING"}
+          {isReady ? "READY TO SHARE" : "ADD YOUR DETAILS"}
         </span>
       </div>
 
@@ -43,9 +43,7 @@ export function CredentialPreview({
           <div className="credential-frame" ref={cardRef}>
             <article className="credential">
               <div className="credential__grain" aria-hidden="true" />
-              <div className="credential__coordinates" aria-hidden="true">
-                15.2993N // 74.1240E
-              </div>
+              <div className="credential__coordinates" aria-hidden="true">GOA · INDIA · 2026</div>
               <CredentialHeader signalId={meta.signalId} />
               <CredentialPhoto
                 builderId={meta.builderId}

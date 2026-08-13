@@ -8,16 +8,16 @@ export function CredentialFooter({ stack }: CredentialFooterProps) {
   return (
     <footer className="credential-footer">
       <div>
-        <p className="credential-footer__label">BUILD SIGNAL</p>
+        <p className="credential-footer__label">BUILDER RHYTHM</p>
         <BuildSignal seed={stack} />
       </div>
       <div className="credential-footer__copy">
-        <span>GOA // INDIA</span>
+        <span>GOA, INDIA</span>
         <span>HH GOA 2026</span>
         <strong>
-          LESS NOISE.
+          MAKE SOME
           <br />
-          MORE SIGNAL.
+          GOOD TROUBLE.
         </strong>
       </div>
     </footer>

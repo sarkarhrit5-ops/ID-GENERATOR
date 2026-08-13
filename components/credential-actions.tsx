@@ -124,7 +124,7 @@ export function CredentialActions({
           onClick={handleDownload}
           type="button"
         >
-          {isExporting ? "EXPORTING SIGNAL..." : "DOWNLOAD CREDENTIAL"}
+          {isExporting ? "PREPARING YOUR ID..." : "DOWNLOAD MY ID"}
         </button>
 
         <button
@@ -133,7 +133,7 @@ export function CredentialActions({
           onClick={handleXShare}
           type="button"
         >
-          {isExporting ? "PREPARING X POST..." : "POST TO X"}
+          {isExporting ? "PREPARING X POST..." : "SHARE TO X"}
         </button>
 
         {supportsNativeShare ? (
