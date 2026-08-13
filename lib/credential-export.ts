@@ -39,10 +39,13 @@ export async function renderCredentialToBlob(node: HTMLElement): Promise<Blob> {
     canvasWidth: CREDENTIAL_EXPORT_SPEC.width,
     canvasHeight: CREDENTIAL_EXPORT_SPEC.height,
     style: {
+      width: "540px",
+      height: "675px",
       transform: "none",
       transition: "none",
       animation: "none",
       margin: "0",
+      boxShadow: "none",
     },
     quality: 0.95,
     cacheBust: true,
