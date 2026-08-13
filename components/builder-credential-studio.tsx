@@ -40,9 +40,9 @@ export function BuilderCredentialStudio() {
       <section className="studio" aria-labelledby="studio-title">
         <header className="studio__header">
           <div className="brand-bar">
-            <a className="brand" href="#studio-title" aria-label="Hacker House Goa 2026">
+            <a className="brand" href="https://hhgoa.com/" target="_blank" rel="noreferrer" aria-label="Hacker House Goa 2026">
               <span className="brand__monogram">
-                <img src="/hh-goa-logo.png" alt="HH Goa" />
+                <img src="/decorations/hh-goa-logo.png" alt="HH Goa" />
               </span>
               <span className="brand__copy">
                 <strong>HACKER HOUSE</strong>
